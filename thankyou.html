@@ -12,6 +12,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       font-family: Arial, sans-serif;
@@ -19,11 +23,58 @@
         radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.2), transparent 30%),
         linear-gradient(135deg, #050505, #111);
       color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .logo span {
+      color: #d4af37;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 26px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .nav-btn {
+      border: 1px solid #d4af37;
+      padding: 10px 18px;
+      border-radius: 999px;
+      color: #d4af37;
+    }
+
+    main {
+      min-height: calc(100vh - 144px);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 24px;
+      padding: 80px 6%;
     }
 
     .box {
@@ -48,8 +99,10 @@
     }
 
     h1 {
-      font-size: 46px;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.05;
       margin-bottom: 16px;
+      letter-spacing: -2px;
     }
 
     p {
@@ -58,7 +111,7 @@
       margin-bottom: 30px;
     }
 
-    a {
+    .btn {
       display: inline-block;
       background: linear-gradient(135deg, #d4af37, #f5d76e);
       color: #050505;
@@ -66,19 +119,54 @@
       padding: 14px 24px;
       border-radius: 999px;
       font-weight: 800;
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.22);
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #777;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="box">
-    <div class="badge">Request Received</div>
-    <h1>Thank You.</h1>
-    <p>
-      Your request has been sent to Urban Concept Solutions.
-      We’ll review your information and contact you shortly.
-    </p>
-    <a href="index.html">Back to Home</a>
-  </div>
+  <nav>
+    <div class="logo">URBAN <span>CONCEPT</span> SOLUTIONS</div>
+    <div>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#support">Support</a>
+      <a href="index.html#contact" class="nav-btn">Get a Quote</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="box">
+      <div class="badge">Request Received</div>
+      <h1>Thank You.</h1>
+      <p>
+        Your request has been sent to Urban Concept Solutions.
+        We'll review your information and contact you shortly.
+      </p>
+      <a class="btn" href="index.html">Back to Home</a>
+    </div>
+  </main>
+
+  <footer>
+    Urban Concept Solutions © 2026 · latchman@urbanconceptsolutions.com
+  </footer>
 </body>
 </html>

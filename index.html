@@ -545,9 +545,9 @@
         <div>🛠 POS · Cameras · Wi-Fi · Computers · Marketing</div>
       </div>
 
-      <form action="https://formspree.io/f/mqevlqae" method="POST">
+      <form id="quoteForm" action="https://formspree.io/f/mqevlqae" method="POST">
         <input type="hidden" name="_subject" value="New Urban Concept Solutions Lead">
-        <input type="hidden" name="_next" value="thankyou.html">
+        <input type="hidden" name="_next" value="https://urbanconceptsolutions.com/thankyou.html">
         <input type="hidden" id="selectedPlan" name="Selected Plan" value="General Inquiry">
 
         <div class="form-row">
@@ -607,6 +607,7 @@
         <textarea name="Project Details" rows="6" placeholder="Example: I own a restaurant and need cameras, Wi-Fi, and Square setup."></textarea>
 
         <button class="btn" type="submit">Send Request</button>
+        <p id="formStatus" aria-live="polite" style="margin-top: 14px; color: #bdbdbd;"></p>
       </form>
     </div>
   </div>
@@ -619,6 +620,40 @@
     function setPlan(planName) {
       document.getElementById("selectedPlan").value = planName;
     }
+
+    const quoteForm = document.getElementById("quoteForm");
+    const formStatus = document.getElementById("formStatus");
+
+    quoteForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const submitButton = quoteForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+      formStatus.textContent = "";
+
+      try {
+        const response = await fetch(quoteForm.action, {
+          method: quoteForm.method,
+          body: new FormData(quoteForm),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to send form");
+        }
+
+        window.location.href = "thankyou.html";
+      } catch (error) {
+        formStatus.textContent = "Something went wrong. Please email latchman@urbanconceptsolutions.com or try again.";
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
   </script>
 
 </body>
