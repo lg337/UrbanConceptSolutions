@@ -1,0 +1,18 @@
+nav {
+  flex-direction: column;
+  gap: 14px;
+}
+
+nav a {
+  margin: 0 8px;
+}
+
+.btn.secondary {
+  margin-left: 0;
+  margin-top: 12px;
+}
+
+.contact-grid,
+.form-row {
+  grid-template-columns: 1fr;
+}
