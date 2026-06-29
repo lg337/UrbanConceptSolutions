@@ -1,70 +1,625 @@
-<div id="contactForm" class="form-section">
-    <form action="https://formspree.io/f/mqevlqae" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Concept Solutions</title>
 
-        <h2>Request a Free Consultation</h2>
-        <p>Tell us a little about your business and we'll reach out within one business day.</p>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        <input type="hidden" id="selectedPlan" name="Selected Plan">
+    html {
+      scroll-behavior: smooth;
+    }
 
-        <label>Full Name</label>
-        <input
-            type="text"
-            name="Name"
-            placeholder="John Smith"
-            required>
+    body {
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
 
-        <label>Email Address</label>
-        <input
-            type="email"
-            name="Email"
-            placeholder="john@email.com"
-            required>
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        <label>Phone Number</label>
-        <input
-            type="tel"
-            name="Phone"
-            placeholder="(555) 555-5555"
-            required>
+    .logo {
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      font-size: 18px;
+    }
 
-        <label>Business Name</label>
-        <input
-            type="text"
-            name="Business Name"
-            placeholder="ABC Restaurant">
+    .logo span {
+      color: #d4af37;
+    }
 
-        <label>Business Type</label>
-        <select name="Business Type">
-            <option>Restaurant</option>
-            <option>Retail Store</option>
-            <option>Barbershop</option>
-            <option>Salon</option>
-            <option>Office</option>
-            <option>Medical Practice</option>
-            <option>Gym</option>
-            <option>Other</option>
-        </select>
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 26px;
+      font-size: 14px;
+    }
 
-        <label>Services Needed</label>
-        <select name="Service Needed">
-            <option>Complete IT Setup</option>
-            <option>POS Installation</option>
-            <option>Security Cameras</option>
-            <option>Computer Setup</option>
-            <option>Networking / Wi-Fi</option>
-            <option>Monthly IT Support</option>
-            <option>Marketing Services</option>
-        </select>
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .nav-btn {
+      border: 1px solid #d4af37;
+      padding: 10px 18px;
+      border-radius: 999px;
+      color: #d4af37;
+    }
+
+    header {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 6%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.2), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08), transparent 30%),
+        linear-gradient(135deg, #050505, #111);
+    }
+
+    .hero {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 999px;
+      color: #d4af37;
+      margin-bottom: 24px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .gold {
+      color: #d4af37;
+    }
+
+    .hero p {
+      color: #bdbdbd;
+      font-size: 20px;
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4af37, #f5d76e);
+      color: #050505;
+      border: none;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.22);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      margin-left: 12px;
+      box-shadow: none;
+    }
+
+    section {
+      padding: 85px 6%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title small {
+      color: #d4af37;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      color: #aaa;
+      max-width: 650px;
+      margin: 10px auto 0;
+    }
+
+    .plans, .services, .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(20,20,20,0.95), rgba(8,8,8,0.95));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .card.featured {
+      border: 1px solid rgba(212, 175, 55, 0.65);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      color: #d4af37;
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      margin: 18px 0;
+      color: #d4af37;
+    }
+
+    .desc {
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      color: #ddd;
+    }
+
+    li::before {
+      content: "✓";
+      color: #d4af37;
+      margin-right: 10px;
+    }
+
+    .support-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .support-item {
+      background: #080808;
+      padding: 30px;
+    }
+
+    .contact-section {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 6%;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 28px;
+      background: linear-gradient(180deg, #111, #070707);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 28px;
+      padding: 35px;
+    }
+
+    .contact-info h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .contact-info p {
+      color: #aaa;
+      margin-bottom: 22px;
+    }
+
+    .contact-info div {
+      margin: 12px 0;
+      color: #ddd;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      color: #d4af37;
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #050505;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #d4af37;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #777;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .btn.secondary {
+        margin-left: 0;
+        margin-top: 12px;
+      }
+
+      .contact-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">URBAN <span>CONCEPT</span> SOLUTIONS</div>
+    <div>
+      <a href="#services">Services</a>
+      <a href="#plans">Plans</a>
+      <a href="#support">Support</a>
+      <a href="#contact" class="nav-btn">Get a Quote</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <div class="badge">Premium IT Solutions for Small Businesses</div>
+
+      <h1>Smart Tech Setup for <span class="gold">Stronger Businesses.</span></h1>
+
+      <p>
+        We help local businesses install, organize, and maintain the technology they need:
+        POS systems, security cameras, computers, Wi-Fi, networking, and marketing support.
+      </p>
+
+      <a href="#plans" class="btn">View Plans</a>
+      <a href="#contact" class="btn secondary">Get a Free Quote</a>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="section-title">
+      <small>What We Do</small>
+      <h2>Business Technology Made Simple</h2>
+      <p>We help restaurants, barbershops, salons, retail stores, offices, gyms, and local businesses get set up the right way.</p>
+    </div>
+
+    <div class="services">
+      <div class="card">
+        <div class="icon">💳</div>
+        <h3>POS Setup</h3>
+        <p class="desc">Square, Clover, Toast-style setup support, device connection, receipt printers, tablets, and basic staff walkthroughs.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📹</div>
+        <h3>Security Cameras</h3>
+        <p class="desc">Camera planning, installation support, app setup, angle testing, and remote viewing setup for business owners.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🖥️</div>
+        <h3>Computer Setup</h3>
+        <p class="desc">Desktops, laptops, monitors, printers, speakers, TVs, and workstations organized and ready for daily use.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📡</div>
+        <h3>Wi-Fi & Networking</h3>
+        <p class="desc">Router setup, Wi-Fi improvement, guest networks, basic cabling, and troubleshooting slow or unreliable connections.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛠️</div>
+        <h3>Monthly IT Support</h3>
+        <p class="desc">Ongoing troubleshooting, checkups, device support, and priority help when something stops working.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📸</div>
+        <h3>Marketing Support</h3>
+        <p class="desc">Photo and video support for food, products, stores, social media, posters, and local business branding.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="section-title">
+      <small>Choose Your Setup</small>
+      <h2>Service Plans</h2>
+      <p>These are starting prices. Final pricing depends on the size of the location, number of devices, and project details.</p>
+    </div>
+
+    <div class="plans">
+      <div class="card">
+        <div class="tag">Starter</div>
+        <h3>Essential Setup</h3>
+        <p class="price">$499+</p>
+        <p class="desc">Best for small businesses that need the basics done correctly.</p>
+        <ul>
+          <li>Computer and device setup</li>
+          <li>Printer and basic Wi-Fi setup</li>
+          <li>POS setup support</li>
+          <li>Basic security recommendations</li>
+          <li>Staff walkthrough</li>
+        </ul>
+        <a href="#contact" class="btn" onclick="setPlan('Essential Setup')">I’m Interested</a>
+      </div>
+
+      <div class="card featured">
+        <div class="tag">Most Popular</div>
+        <h3>Business Pro</h3>
+        <p class="price">$999+</p>
+        <p class="desc">Best for businesses that need POS, cameras, and networking.</p>
+        <ul>
+          <li>POS system installation support</li>
+          <li>Security camera setup</li>
+          <li>Wi-Fi and network optimization</li>
+          <li>Computer and monitor setup</li>
+          <li>Device organization and testing</li>
+        </ul>
+        <a href="#contact" class="btn" onclick="setPlan('Business Pro')">I’m Interested</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">Premium</div>
+        <h3>Growth Partner</h3>
+        <p class="price">$1,499+</p>
+        <p class="desc">Best for full business setup plus ongoing support.</p>
+        <ul>
+          <li>Complete IT setup</li>
+          <li>POS, cameras, Wi-Fi, and computers</li>
+          <li>Monthly maintenance option</li>
+          <li>Marketing photo/video support</li>
+          <li>Priority support options</li>
+        </ul>
+        <a href="#contact" class="btn" onclick="setPlan('Growth Partner')">I’m Interested</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="section-title">
+      <small>Ongoing Maintenance</small>
+      <h2>Monthly Support</h2>
+      <p>Keep your business technology working after the setup is complete.</p>
+    </div>
+
+    <div class="support-box">
+      <div class="support-item">
+        <h3>Basic Care</h3>
+        <p class="price">$99/mo</p>
+        <ul>
+          <li>Remote troubleshooting</li>
+          <li>Monthly check-in</li>
+          <li>Basic system guidance</li>
+        </ul>
+      </div>
+
+      <div class="support-item">
+        <h3>Standard Care</h3>
+        <p class="price">$199/mo</p>
+        <ul>
+          <li>Priority remote support</li>
+          <li>POS, camera, and Wi-Fi checkups</li>
+          <li>Monthly maintenance review</li>
+        </ul>
+      </div>
+
+      <div class="support-item">
+        <h3>Premium Care</h3>
+        <p class="price">$399/mo</p>
+        <ul>
+          <li>Priority support</li>
+          <li>Monthly onsite visit</li>
+          <li>Tech and marketing support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <small>How It Works</small>
+      <h2>Simple Process</h2>
+    </div>
+
+    <div class="process">
+      <div class="card">
+        <div class="tag">Step 1</div>
+        <h3>Free Consultation</h3>
+        <p class="desc">We learn about your business, location, current setup, and what you need fixed or installed.</p>
+      </div>
+
+      <div class="card">
+        <div class="tag">Step 2</div>
+        <h3>Custom Quote</h3>
+        <p class="desc">You receive a simple quote based on your devices, equipment, setup needs, and support options.</p>
+      </div>
+
+      <div class="card">
+        <div class="tag">Step 3</div>
+        <h3>Setup & Support</h3>
+        <p class="desc">We install, configure, test, and walk you through everything so your business is ready to operate.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="contact" class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <small class="tag">Ready To Get Started?</small>
+        <h2>Request a Free Quote</h2>
+        <p>Tell us about your business and what you need help with. We’ll reach out after reviewing your request.</p>
+
+        <div>📧 latchman@urbanconceptsolutions.com</div>
+        <div>📍 New Jersey / New York Area</div>
+        <div>🛠 POS · Cameras · Wi-Fi · Computers · Marketing</div>
+      </div>
+
+      <form action="https://formspree.io/f/mqevlqae" method="POST">
+        <input type="hidden" name="_subject" value="New Urban Concept Solutions Lead">
+        <input type="hidden" name="_next" value="thankyou.html">
+        <input type="hidden" id="selectedPlan" name="Selected Plan" value="General Inquiry">
+
+        <div class="form-row">
+          <div>
+            <label>Full Name</label>
+            <input type="text" name="Name" placeholder="John Smith" required>
+          </div>
+
+          <div>
+            <label>Email Address</label>
+            <input type="email" name="Email" placeholder="john@email.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label>Phone Number</label>
+            <input type="tel" name="Phone" placeholder="(555) 555-5555" required>
+          </div>
+
+          <div>
+            <label>Business Name</label>
+            <input type="text" name="Business Name" placeholder="ABC Restaurant">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label>Business Type</label>
+            <select name="Business Type">
+              <option>Restaurant</option>
+              <option>Retail Store</option>
+              <option>Barbershop</option>
+              <option>Salon</option>
+              <option>Office</option>
+              <option>Medical Practice</option>
+              <option>Gym</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Service Needed</label>
+            <select name="Service Needed">
+              <option>Complete IT Setup</option>
+              <option>POS Installation</option>
+              <option>Security Cameras</option>
+              <option>Computer Setup</option>
+              <option>Networking / Wi-Fi</option>
+              <option>Monthly IT Support</option>
+              <option>Marketing Services</option>
+            </select>
+          </div>
+        </div>
 
         <label>Tell us about your project</label>
-        <textarea
-            name="Project Details"
-            rows="6"
-            placeholder="Describe your business and what you're looking to accomplish."></textarea>
+        <textarea name="Project Details" rows="6" placeholder="Example: I own a restaurant and need cameras, Wi-Fi, and Square setup."></textarea>
 
-        <button class="btn" type="submit">
-            Send Request →
-        </button>
+        <button class="btn" type="submit">Send Request</button>
+      </form>
+    </div>
+  </div>
 
-    </form>
-</div>
+  <footer>
+    Urban Concept Solutions © 2026 · latchman@urbanconceptsolutions.com
+  </footer>
+
+  <script>
+    function setPlan(planName) {
+      document.getElementById("selectedPlan").value = planName;
+    }
+  </script>
+
+</body>
+</html>
