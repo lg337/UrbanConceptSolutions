@@ -1,246 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Urban Concept Solutions</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #fff;
-    }
+<div id="contactForm" class="form-section">
+    <form action="https://formspree.io/f/mqevlqae" method="POST">
 
-    header {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-    }
+        <h2>Request a Free Consultation</h2>
+        <p>Tell us a little about your business and we'll reach out within one business day.</p>
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+        <input type="hidden" id="selectedPlan" name="Selected Plan">
 
-    header p {
-      font-size: 18px;
-      color: #cbd5e1;
-      max-width: 700px;
-      margin: auto;
-    }
+        <label>Full Name</label>
+        <input
+            type="text"
+            name="Name"
+            placeholder="John Smith"
+            required>
 
-    .section {
-      padding: 50px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+        <label>Email Address</label>
+        <input
+            type="email"
+            name="Email"
+            placeholder="john@email.com"
+            required>
 
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+        <label>Phone Number</label>
+        <input
+            type="tel"
+            name="Phone"
+            placeholder="(555) 555-5555"
+            required>
 
-    .card {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
+        <label>Business Name</label>
+        <input
+            type="text"
+            name="Business Name"
+            placeholder="ABC Restaurant">
 
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #38bdf8;
-    }
+        <label>Business Type</label>
+        <select name="Business Type">
+            <option>Restaurant</option>
+            <option>Retail Store</option>
+            <option>Barbershop</option>
+            <option>Salon</option>
+            <option>Office</option>
+            <option>Medical Practice</option>
+            <option>Gym</option>
+            <option>Other</option>
+        </select>
 
-    .price {
-      font-size: 28px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
+        <label>Services Needed</label>
+        <select name="Service Needed">
+            <option>Complete IT Setup</option>
+            <option>POS Installation</option>
+            <option>Security Cameras</option>
+            <option>Computer Setup</option>
+            <option>Networking / Wi-Fi</option>
+            <option>Monthly IT Support</option>
+            <option>Marketing Services</option>
+        </select>
 
-    ul {
-      padding-left: 20px;
-      color: #e2e8f0;
-    }
+        <label>Tell us about your project</label>
+        <textarea
+            name="Project Details"
+            rows="6"
+            placeholder="Describe your business and what you're looking to accomplish."></textarea>
 
-    li {
-      margin-bottom: 10px;
-    }
+        <button class="btn" type="submit">
+            Send Request →
+        </button>
 
-    button {
-      background: #38bdf8;
-      color: #020617;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background: #0ea5e9;
-    }
-
-    .form-section {
-      display: none;
-      background: #020617;
-      padding: 40px 20px;
-    }
-
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: #1e293b;
-      padding: 25px;
-      border-radius: 16px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-      box-sizing: border-box;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #94a3b8;
-      background: #020617;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Urban Concept Solutions</h1>
-    <p>Affordable IT setup, security, POS, networking, and marketing support for local small businesses.</p>
-    <button onclick="showForm('General Inquiry')">Get a Free Quote</button>
-  </header>
-
-  <section class="section">
-    <h2>Our Service Plans</h2>
-
-    <div class="plans">
-      <div class="card">
-        <h3>Starter Setup</h3>
-        <p class="price">$499+</p>
-        <ul>
-          <li>Basic business tech setup</li>
-          <li>Computer, printer, and Wi-Fi setup</li>
-          <li>POS setup support</li>
-          <li>Basic security recommendations</li>
-          <li>One-time installation</li>
-        </ul>
-        <button onclick="showForm('Starter Setup')">Interested</button>
-      </div>
-
-      <div class="card">
-        <h3>Business Pro</h3>
-        <p class="price">$999+</p>
-        <ul>
-          <li>Full small business IT setup</li>
-          <li>POS system installation</li>
-          <li>Security camera setup</li>
-          <li>Network and Wi-Fi optimization</li>
-          <li>Device setup and staff walkthrough</li>
-        </ul>
-        <button onclick="showForm('Business Pro')">Interested</button>
-      </div>
-
-      <div class="card">
-        <h3>Growth Partner</h3>
-        <p class="price">$1,499+ / setup</p>
-        <ul>
-          <li>Complete IT and security setup</li>
-          <li>POS, cameras, computers, and network</li>
-          <li>Monthly maintenance available</li>
-          <li>Marketing photo/video support</li>
-          <li>Priority support options</li>
-        </ul>
-        <button onclick="showForm('Growth Partner')">Interested</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Monthly Support</h2>
-
-    <div class="plans">
-      <div class="card">
-        <h3>Basic Support</h3>
-        <p class="price">$99/mo</p>
-        <ul>
-          <li>Remote support</li>
-          <li>Basic troubleshooting</li>
-          <li>Monthly check-in</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Standard Support</h3>
-        <p class="price">$199/mo</p>
-        <ul>
-          <li>Remote support</li>
-          <li>Priority troubleshooting</li>
-          <li>Camera/POS/network checkups</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Premium Support</h3>
-        <p class="price">$399/mo</p>
-        <ul>
-          <li>Priority support</li>
-          <li>Monthly maintenance visit</li>
-          <li>Tech and marketing support</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="contactForm" class="form-section">
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <h2>Request a Quote</h2>
-
-      <input type="hidden" id="selectedPlan" name="selected_plan">
-
-      <label>Name</label>
-      <input type="text" name="name" required>
-
-      <label>Email</label>
-      <input type="email" name="email" required>
-
-      <label>Phone Number</label>
-      <input type="tel" name="phone" required>
-
-      <label>Business Type</label>
-      <input type="text" name="business_type" placeholder="Restaurant, barbershop, retail store, office, etc.">
-
-      <label>What do you need help with?</label>
-      <textarea name="message" rows="5" placeholder="POS setup, cameras, computers, Wi-Fi, marketing, etc."></textarea>
-
-      <button type="submit">Send Request</button>
     </form>
-  </section>
-
-  <footer>
-    Urban Concept Solutions © 2026 | latchman@urbanconceptsolutions.com
-  </footer>
-
-  <script>
-    function showForm(plan) {
-      document.getElementById("contactForm").style.display = "block";
-      document.getElementById("selectedPlan").value = plan;
-      document.getElementById("contactForm").scrollIntoView({ behavior: "smooth" });
-    }
-  </script>
-
-</body>
-</html>
+</div>
